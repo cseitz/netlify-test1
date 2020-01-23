@@ -11,4 +11,8 @@ app.get("/what", (req, res) => {
   res.send("u wot");
 })
 
+_app.use("/", (req, res) => {
+  res.send("pls");
+})
+
 module.exports.handler = require('serverless-http')(_app);
