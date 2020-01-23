@@ -10,7 +10,7 @@ router.get("/omg", (req, res) => {
   res.send("omg what");
 })
 
-app.use("/.netlify/functions/server", require("./paths.js"));
+app.use("/.netlify/functions/server", router);
 
 app.use("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
