@@ -9,7 +9,9 @@ router.get("/", (req, res) => {
 })
 
 router.get("/omg", (req, res) => {
-  res.send("omg what");
+  res.writeHead(200, { 'Content-Type': 'text/html' });
+  res.write('<h1>omg what</h1>');
+  res.end();
 })
 
 app.use("/.netlify/functions/server", router);
