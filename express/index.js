@@ -2,7 +2,7 @@ var express = require("express");
 var _app = express();
 var app = express();
 
-_app.use('/.netlify/functions/server', app);
+_app.use('/.netlify/functions/index', app);
 
 app.get("/", (req, res) => {
   res.send("yeet home page is here!");
