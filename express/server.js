@@ -3,7 +3,9 @@ var app = express();
 var router = express.Router();
 
 router.get("/", (req, res) => {
-  res.send("yeah boi");
+  res.writeHead(200, { 'Content-Type': 'text/html' });
+  res.write('<h1>Hello from Express.js!</h1>');
+  res.end();
 })
 
 router.get("/omg", (req, res) => {
