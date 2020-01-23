@@ -1,35 +1,21 @@
-var express = require("express");
-var app = express();
-var router = express.Router();
+'use strict';
+const express = require('express');
+const path = require('path');
+const serverless = require('serverless-http');
+const app = express();
 
-router.get("/", (req, res) => {
+const router = express.Router();
+router.get('/', (req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/html' });
   res.write('<h1>Hello from Express.js!</h1>');
   res.end();
-})
+});
+router.get('/another', (req, res) => res.json({ route: req.originalUrl }));
+router.post('/', (req, res) => res.json({ postBody: req.body }));
 
-router.get("/omg", (req, res) => {
-  res.writeHead(200, { 'Content-Type': 'text/html' });
-  res.write('<h1>omg what</h1>');
-  res.end();
-})
 
-app.use("/.netlify/functions/server", router);
-
-app.use("*", (req, res) => {
-  res.sendFile(__dirname + "/../index.html");
-})
-
-/*app.use((req, res) => {
-  //res.sendFile(__dirname + "/../index.html");
-  res.writeHead(200, { 'Content-Type': 'text/html' });
-  res.write(`<!DOCTYPE html><script> alert("hi"); </script>
-  <object
-    type="text/html"
-    data="/.netlify/functions/server${req.originalUrl}"
-    style="width:100%;height:100%;"
-  >`);
-})*/
+app.use('/.netlify/functions/server', router);  // path must route to lambda
+app.use('/', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
 
 module.exports = app;
-module.exports.handler = require('serverless-http')(app);
+module.exports.handler = serverless(app);
