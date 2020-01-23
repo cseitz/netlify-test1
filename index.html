@@ -1,6 +1,19 @@
 <!DOCTYPE html>
-<object
+<!-- <object
   type="text/html"
   data="/.netlify/functions/server"
   style="width:100%;height:100%;"
->
+> -->
+
+<script>
+
+document.open();
+var url = window.location.pathname;
+document.write(`<object
+  type="text/html"
+  data="/.netlify/functions/server${url}"
+  style="width:100%;height:100%;"
+>`);
+document.close();
+
+</script>
