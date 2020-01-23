@@ -13,7 +13,7 @@ router.get("/omg", (req, res) => {
 app.use("/.netlify/functions/server", router);
 
 app.use("/", (req, res) => {
-  res.sendFile(__dirname + "/index.html");
+  res.sendFile(__dirname + "/../index.html");
 })
 
 module.exports = app;
